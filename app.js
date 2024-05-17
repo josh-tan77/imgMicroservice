@@ -11,19 +11,19 @@ if (port == null || port == "") {
 
 // get request to index page
 app.get('/', (req, res) => {
-    var url = "https://en.wikipedia.org/w/api.php"; 
+    // var url = "https://en.wikipedia.org/w/api.php"; 
 
-    var params = {
-        action: "query",
-        prop: "images",
-        titles: "Albert Einstein",
-        format: "json"
-    };
+    // var params = {
+    //     action: "query",
+    //     prop: "images",
+    //     titles: "Albert Einstein",
+    //     format: "json"
+    // };
 
-    console.log(params)
+    // console.log(params)
     
-    url = url + "?origin=*";
-    Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
+    // url = url + "?origin=*";
+    // Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
     
     // fetch(url)
     //     .then(function(response){return response.json();})
@@ -46,3 +46,10 @@ app.get('/', (req, res) => {
 
 
 // otherwise send nothing
+
+/*
+    LISTENER
+*/
+app.listen(port, function(){            // This is the basic syntax for what is called the 'listener' which receives incoming requests on the specified PORT.
+    console.log('Express started on http://localhost:' + port + '; press Ctrl-C to terminate.')
+});
