@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
         })
         .catch(function(error){console.log(error);});
 
-    // res.send("Hello")
+    res.send("Hello")
 })
 
 // check if it contains search term
