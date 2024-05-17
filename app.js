@@ -19,6 +19,8 @@ app.get('/', (req, res) => {
         titles: "Albert Einstein",
         format: "json"
     };
+
+    console.log(params)
     
     url = url + "?origin=*";
     Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
