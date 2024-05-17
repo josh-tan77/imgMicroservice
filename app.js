@@ -16,7 +16,8 @@ app.get('/', async (req, res) => {
 
     var params = {
         action: "query",
-        prop: "imageinfo",
+        prop: "imageinfo", 
+        iiprop: "url",
         titles: "Albert Einstein",
         format: "json"
     };
