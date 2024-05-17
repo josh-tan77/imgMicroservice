@@ -37,8 +37,6 @@ app.get('/', (req, res) => {
         })
         .catch(function(error){console.log(error);});
 
-    console.log(pages.json)
-    res.send(pages.json)
     // res.send("Hello")
 })
 
