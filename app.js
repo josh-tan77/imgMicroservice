@@ -12,6 +12,7 @@ if (port == null || port == "") {
 // get request to index page
 app.get('/', async (req, res) => {
     var url = "https://en.wikipedia.org/w/api.php"; 
+    var images;
 
     var params = {
         action: "query",
@@ -29,6 +30,7 @@ app.get('/', async (req, res) => {
         .then(function(response){return response.json();})
         .then(function(response) {
             var pages = response.query.pages;
+            images = pages;
             for (var page in pages) {
                 for (var img of pages[page].images) {
                     console.log(img.title);
@@ -38,7 +40,7 @@ app.get('/', async (req, res) => {
         .catch(function(error){console.log(error);});
 
     console.log("Fetched")
-    console.log(response)
+    console.log(images)
     res.send("Hello")
 })
 
