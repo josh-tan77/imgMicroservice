@@ -16,7 +16,7 @@ app.get('/', async (req, res) => {
 
     var params = {
         action: "query",
-        prop: "images",
+        prop: "imageinfo",
         titles: "Albert Einstein",
         format: "json"
     };
@@ -29,17 +29,16 @@ app.get('/', async (req, res) => {
     await fetch(url)
         .then(function(response){return response.json();})
         .then(function(response) {
-            var pages = response.query.pages;
-            images = pages;
-            for (var page in pages) {
-                for (var img of pages[page].images) {
-                    console.log(img.title);
-                }
-            }
+            // var pages = response.query.pages;
+            images = response.query.pages;
+            // for (var page in pages) {
+            //     for (var img of pages[page].images) {
+            //         console.log(img.title);
+            //     }
+            // }
         })
         .catch(function(error){console.log(error);});
 
-    console.log("Fetched")
     console.log(images)
     res.send("Hello")
 })
