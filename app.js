@@ -10,7 +10,7 @@ if (port == null || port == "") {
 
 
 // get request to index page
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     var url = "https://en.wikipedia.org/w/api.php"; 
 
     var params = {
@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
     url = url + "?origin=*";
     Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
     
-    fetch(url)
+    await fetch(url)
         .then(function(response){return response.json();})
         .then(function(response) {
             var pages = response.query.pages;
@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
         })
         .catch(function(error){console.log(error);});
 
-    res.send(response.query.pages.json())
+    res.send(pages.json)
 })
 
 // check if it contains search term
