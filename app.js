@@ -37,6 +37,7 @@ app.get('/', async (req, res) => {
         })
         .catch(function(error){console.log(error);});
 
+    console.log("Fetched")
     res.send(pages.json)
 })
 
