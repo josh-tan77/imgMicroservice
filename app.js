@@ -40,7 +40,7 @@ app.get('/', async (req, res) => {
         })
         .catch(function(error){console.log(error);});
 
-    console.log(images)
+    // console.log(images)
     res.send("Hello")
 })
 
