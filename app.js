@@ -21,8 +21,6 @@ app.get('/', async (req, res) => {
         titles: "Albert Einstein",
         format: "json"
     };
-
-    console.log(params)
     
     url = url + "?origin=*";
     Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
@@ -30,13 +28,13 @@ app.get('/', async (req, res) => {
     await fetch(url)
         .then(function(response){return response.json();})
         .then(function(response) {
-            // var pages = response.query.pages;
+            var pages = response.query.pages;
             images = response.query.pages;
-            // for (var page in pages) {
-            //     for (var img of pages[page].images) {
-            //         console.log(img.title);
-            //     }
-            // }
+            for (var page in pages) {
+                for (var img of pages[page].images) {
+                    console.log(img.title);
+                }
+            }
         })
         .catch(function(error){console.log(error);});
 
