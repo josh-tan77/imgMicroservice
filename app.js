@@ -17,7 +17,6 @@ app.get('/', async (req, res) => {
     var params = {
         action: "query",
         prop: "imageinfo", 
-        iiprop: "url",
         titles: "Albert Einstein",
         format: "json"
     };
@@ -31,11 +30,7 @@ app.get('/', async (req, res) => {
             var pages = response.query.pages;
             console.log(pages)
             images = response.query.pages;
-            for (var page in pages) {
-                for (var img of pages[page].images) {
-                    console.log(img.title);
-                }
-            }
+
         })
         .catch(function(error){console.log(error);});
 
