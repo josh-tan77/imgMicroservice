@@ -11,12 +11,15 @@ if (port == null || port == "") {
 
 // get request to index page
 app.get('/', async (req, res) => {
+// need to get image first using one query
+// then use image info to get url
+
     var url = "https://en.wikipedia.org/w/api.php"; 
     var images;
 
     var params = {
         action: "query",
-        prop: "imageinfo", 
+        prop: "images", 
         titles: "Albert Einstein",
         format: "json"
     };
@@ -30,11 +33,11 @@ app.get('/', async (req, res) => {
             var pages = response.query.pages;
             console.log(pages)
             images = response.query.pages;
-
+            title = pages[0].images.title;
         })
         .catch(function(error){console.log(error);});
 
-    // console.log(images)
+    console.log(title)
     res.send("Hello")
 })
 
