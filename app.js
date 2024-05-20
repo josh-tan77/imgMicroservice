@@ -31,8 +31,6 @@ app.get('/', async (req, res) => {
         .then(function(response){return response.json();})
         .then(function(response) {
             var pages = response.query.pages;
-            console.log(pages)
-            images = response.query.pages;
             title = pages[0].images.title;
         })
         .catch(function(error){console.log(error);});
