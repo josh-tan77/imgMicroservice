@@ -46,12 +46,12 @@ app.get('/', async (req, res) => {
                     var url2 = source_url + "?origin=*";
                     Object.keys(url_params).forEach(function(key){url2 += "&" + key + "=" + url_params[key];});
 
-                    fetch(url2)
+                    return fetch(url2)
                         .then(function(response){return response.json();})
                         .then(function(response) {
                             var pages = response.query.pages;
                             for (var p in pages) {
-                                console.log(pages[p].title + " has url" + pages[p].imageinfo[0].url);
+                                console.log(pages[p].title + " has url " + pages[p].imageinfo[0].url);
                             }
                         })
                         .catch(function(error){console.log(error);});
