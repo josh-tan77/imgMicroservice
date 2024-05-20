@@ -14,7 +14,7 @@ app.get('/', async (req, res) => {
 // need to get image first using one query
 // then use image info to get url
 
-    var url = "https://en.wikipedia.org/w/api.php"; 
+    var source_url = "https://en.wikipedia.org/w/api.php"; 
     var images;
 
     var params = {
@@ -24,7 +24,7 @@ app.get('/', async (req, res) => {
         format: "json"
     };
     
-    url = url + "?origin=*";
+    url = source_url + "?origin=*";
     Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
     
     await fetch(url)
@@ -34,6 +34,29 @@ app.get('/', async (req, res) => {
             for (var page in pages) {
                 for (var img of pages[page].images) {
                     console.log(img.title);
+                    var title = img.title;
+
+                    var url_params = {
+                        action: "query",
+                        prop: "imageinfo", 
+                        titles: title,
+                        format: "json"
+                    };
+
+                    var url2 = source_url + "?origin=*";
+                    Object.keys(url_params).forEach(function(key){url2 += "&" + key + "=" + url_params[key];});
+
+                    fetch(url2)
+                        .then(function(response){return response.json();})
+                        .then(function(response) {
+                            var pages = response.query.pages;
+                            for (var p in pages) {
+                                console.log(pages[p].title + " has url" + pages[p].imageinfo[0].url);
+                            }
+                        })
+                        .catch(function(error){console.log(error);});
+
+
                 }
             }
         })
