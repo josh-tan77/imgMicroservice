@@ -39,7 +39,7 @@ app.get('/:keyword', async (req, res) => {
             
             for (var page in pages) {
                 console.log("test")
-                console.log(pages[page]);
+                console.log(pages[page].thumbnail);
                 for (var img of pages[page].images) {
                     console.log(img.title);
                     var title = img.title;
