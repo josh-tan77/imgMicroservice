@@ -20,8 +20,7 @@ app.get('/:keyword', async (req, res) => {
         action: "query",
         prop: "pageimages", 
         titles: keyword,
-        format: "json",
-        imlimit: 500
+        format: "json"
     };
     
     url = source_url + "?origin=*";
@@ -36,7 +35,7 @@ app.get('/:keyword', async (req, res) => {
             console.log(pages);
             
             for (var page in pages) {
-                main_url = pages[page].thumbnail.source
+                main_url = pages[page].thumbnail.source;
             }
         })
         .catch(function(error){console.log(error);});
