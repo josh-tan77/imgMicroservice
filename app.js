@@ -38,6 +38,7 @@ app.get('/:keyword', async (req, res) => {
             console.log(pages);
             
             for (var page in pages) {
+                console.log(pages[page]);
                 for (var img of pages[page].images) {
                     console.log(img.title);
                     var title = img.title;
