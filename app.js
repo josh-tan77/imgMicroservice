@@ -52,7 +52,8 @@ app.get('/', async (req, res) => {
             action: "query",
             prop: "imageinfo", 
             titles: titles[i],
-            format: "json"
+            format: "json",
+            iiprop: "url"
         };
         console.log(params2)
 
