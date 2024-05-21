@@ -40,29 +40,8 @@ app.get('/', async (req, res) => {
                     console.log(img.title);
                     var title = img.title;
 
-            //         var url_params = {
-            //             action: "query",
-            //             prop: "imageinfo", 
-            //             titles: title,
-            //             format: "json"
-            //         };
-
-            //         var url2 = source_url + "?origin=*";
-            //         Object.keys(url_params).forEach(function(key){url2 += "&" + key + "=" + url_params[key];});
-
-            //         fetch(url2)
-            //             .then(function(response){return response.json();})
-            //             .then(function(response) {
-            //                 var pages = response.query.pages;
-            //                 for (var p in pages) {
-            //                     console.log(pages[p].title + " has url " + pages[p].imageinfo[0].url);
-            //                 }
-            //             })
-            //             .catch(function(error){console.log(error);});
-
-
-                // }
-            // }
+                }
+            }
         })
         .catch(function(error){console.log(error);});
 
