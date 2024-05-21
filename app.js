@@ -11,8 +11,6 @@ if (port == null || port == "") {
 
 // get request to index page
 app.get('/', async (req, res) => {
-// need to get image first using one query
-// then use image info to get url
 
     var source_url = "https://en.wikipedia.org/w/api.php"; 
     var titles = [];
@@ -27,6 +25,8 @@ app.get('/', async (req, res) => {
     
     url = source_url + "?origin=*";
     Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
+
+    // First, get a list of all iamge titles on the page
     
     await fetch(url)
         .then(function(response){return response.json();})
@@ -44,8 +44,8 @@ app.get('/', async (req, res) => {
         })
         .catch(function(error){console.log(error);});
 
-    console.log(titles)
 
+    // Then, get the url for each image by title
     for (let i = 0; i < titles.length; i++) {
         console.log(titles[i]);
         var params2 = {
@@ -55,7 +55,7 @@ app.get('/', async (req, res) => {
             format: "json",
             iiprop: "url"
         };
-        console.log(params2)
+
 
         url2 = source_url + "?origin=*";
         Object.keys(params2).forEach(function(key){url2 += "&" + key + "=" + params2[key];});
@@ -64,21 +64,15 @@ app.get('/', async (req, res) => {
         .then(function(response){return response.json();})
         .then(function(response) {
             var pages = response.query.pages;
-            console.log(pages)
             for (var p in pages) {
-                console.log(pages[p].title + " url is: " + pages[p].imageinfo[0].url);
                 data[titles[i]] = pages[p].imageinfo[0].url;
             }
         })
         .catch(function(error){console.log(error);});
     }
 
-
-
-
-
     console.log(data);
-    res.send("Hello")
+    res.send(JSON.stringify(data))
 })
 
 // check if it contains search term
