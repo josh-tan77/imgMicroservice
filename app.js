@@ -65,7 +65,7 @@ app.get('/', async (req, res) => {
             var pages = response.query.pages;
             console.log(pages)
             for (var p in pages) {
-                console.log(pages[p].title + " is uploaded by User:" + pages[p].imageinfo[0].user);
+                console.log(pages[p].title + " url is: " + pages[p].imageinfo[0].url);
             }
         })
         .catch(function(error){console.log(error);});
