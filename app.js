@@ -47,6 +47,7 @@ app.get('/', async (req, res) => {
     console.log(titles)
 
     for (var title in titles) {
+        console.log(title);
         var params2 = {
             action: "query",
             prop: "imageinfo", 
