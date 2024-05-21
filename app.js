@@ -32,7 +32,7 @@ app.get('/', async (req, res) => {
         .then(function(response){return response.json();})
         .then(function(response) {
             var pages = response.query.pages;
-            title = Object.values(pages)[0];
+            title = Object.values(pages)[0].title;
             console.log(title);
             
             // for (var page in pages) {
