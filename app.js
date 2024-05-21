@@ -62,14 +62,9 @@ app.get('/', async (req, res) => {
         .then(function(response) {
             var pages = response.query.pages;
             console.log(pages)
-            // for (var page in pages) {
-            //     for (var img of pages[page].images) {
-            //         console.log(img.title);
-            //         var title = img.title;
-            //         titles.push(title);
-
-            //     }
-            // }
+            for (var p in pages) {
+                console.log(pages[p].title + " is uploaded by User:" + pages[p].imageinfo[0].user);
+            }
         })
         .catch(function(error){console.log(error);});
     }
