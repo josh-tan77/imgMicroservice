@@ -21,7 +21,7 @@ app.get('/', async (req, res) => {
     var params = {
         action: "query",
         prop: "images", 
-        titles: "Albert Einstein",
+        titles: "Golden State Warriors",
         format: "json"
     };
     
@@ -32,13 +32,13 @@ app.get('/', async (req, res) => {
         .then(function(response){return response.json();})
         .then(function(response) {
             var pages = response.query.pages;
-            title = Object.values(pages)[0].images;
-            console.log(title);
+            // title = Object.values(pages)[0].images;
+            // console.log(title);
             
-            // for (var page in pages) {
-            //     for (var img of pages[page].images) {
-            //         console.log(img.title);
-            //         var title = img.title;
+            for (var page in pages) {
+                for (var img of pages[page].images) {
+                    console.log(img.title);
+                    var title = img.title;
 
             //         var url_params = {
             //             action: "query",
