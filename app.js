@@ -19,7 +19,8 @@ app.get('/', async (req, res) => {
         action: "query",
         prop: "images", 
         titles: "Albert Einstein",
-        format: "json"
+        format: "json",
+        imlimit: 500
     };
     
     url = source_url + "?origin=*";
