@@ -15,7 +15,6 @@ app.get('/', async (req, res) => {
 // then use image info to get url
 
     var source_url = "https://en.wikipedia.org/w/api.php"; 
-    var images;
     var title;
     var titles = [];
 
@@ -33,8 +32,6 @@ app.get('/', async (req, res) => {
         .then(function(response){return response.json();})
         .then(function(response) {
             var pages = response.query.pages;
-            // title = Object.values(pages)[0].images;
-            // console.log(title);
             
             for (var page in pages) {
                 for (var img of pages[page].images) {
@@ -48,6 +45,40 @@ app.get('/', async (req, res) => {
         .catch(function(error){console.log(error);});
 
     console.log(titles)
+
+    for (var title in titles) {
+        var params2 = {
+            action: "query",
+            prop: "imageinfo", 
+            titles: title,
+            format: "json"
+        };
+
+        url2 = source_url + "?origin=*";
+        Object.keys(params).forEach(function(key){url2 += "&" + key + "=" + params2[key];});
+
+        await fetch(url2)
+        .then(function(response){return response.json();})
+        .then(function(response) {
+            var pages = response.query.pages;
+            console.log(pages)
+            // for (var page in pages) {
+            //     for (var img of pages[page].images) {
+            //         console.log(img.title);
+            //         var title = img.title;
+            //         titles.push(title);
+
+            //     }
+            // }
+        })
+        .catch(function(error){console.log(error);});
+    }
+
+
+
+
+
+
     res.send("Hello")
 })
 
