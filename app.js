@@ -14,7 +14,7 @@ app.get('/:keyword', async (req, res) => {
     var keyword = req.params.keyword;
     // handle case conversion
     console.log(keyword);
-    keyword = keyword.split(' ')
+    keyword = keyword.split('_')
     .map(w => w[0].toUpperCase() + w.substring(1).toLowerCase())
     .join(' ');
     console.log(keyword);
