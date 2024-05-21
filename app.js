@@ -8,7 +8,6 @@ if (port == null || port == "") {
 }
 
 
-
 // get request to index page
 app.get('/', async (req, res) => {
 
@@ -43,7 +42,7 @@ app.get('/', async (req, res) => {
             }
         })
         .catch(function(error){console.log(error);});
-
+    console.log(titles);
 
     // Then, get the url for each image by title
     for (let i = 0; i < titles.length; i++) {
@@ -72,15 +71,8 @@ app.get('/', async (req, res) => {
     }
 
     console.log(data);
-    res.send(JSON.stringify(data))
+    res.send(JSON.stringify(data));
 })
-
-// check if it contains search term
-
-// if yes send response
-
-
-// otherwise send nothing
 
 /*
     LISTENER
