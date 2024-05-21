@@ -12,12 +12,11 @@ if (port == null || port == "") {
 app.get('/:keyword', async (req, res) => {
 
     var keyword = req.params.keyword;
+
     // handle case conversion
-    console.log(keyword);
     keyword = keyword.split('_')
     .map(w => w[0].toUpperCase() + w.substring(1).toLowerCase())
     .join('_');
-    console.log(keyword);
 
     var source_url = "https://en.wikipedia.org/w/api.php"; 
     var main_url;
