@@ -16,6 +16,7 @@ app.get('/', async (req, res) => {
 
     var source_url = "https://en.wikipedia.org/w/api.php"; 
     var images;
+    var title;
 
     var params = {
         action: "query",
@@ -31,34 +32,37 @@ app.get('/', async (req, res) => {
         .then(function(response){return response.json();})
         .then(function(response) {
             var pages = response.query.pages;
-            for (var page in pages) {
-                for (var img of pages[page].images) {
-                    console.log(img.title);
-                    var title = img.title;
+            title = Object.values(pages)[0];
+            console.log(title);
+            
+            // for (var page in pages) {
+            //     for (var img of pages[page].images) {
+            //         console.log(img.title);
+            //         var title = img.title;
 
-                    var url_params = {
-                        action: "query",
-                        prop: "imageinfo", 
-                        titles: title,
-                        format: "json"
-                    };
+            //         var url_params = {
+            //             action: "query",
+            //             prop: "imageinfo", 
+            //             titles: title,
+            //             format: "json"
+            //         };
 
-                    var url2 = source_url + "?origin=*";
-                    Object.keys(url_params).forEach(function(key){url2 += "&" + key + "=" + url_params[key];});
+            //         var url2 = source_url + "?origin=*";
+            //         Object.keys(url_params).forEach(function(key){url2 += "&" + key + "=" + url_params[key];});
 
-                    return fetch(url2)
-                        .then(function(response){return response.json();})
-                        .then(function(response) {
-                            var pages = response.query.pages;
-                            for (var p in pages) {
-                                console.log(pages[p].title + " has url " + pages[p].imageinfo[0].url);
-                            }
-                        })
-                        .catch(function(error){console.log(error);});
+            //         fetch(url2)
+            //             .then(function(response){return response.json();})
+            //             .then(function(response) {
+            //                 var pages = response.query.pages;
+            //                 for (var p in pages) {
+            //                     console.log(pages[p].title + " has url " + pages[p].imageinfo[0].url);
+            //                 }
+            //             })
+            //             .catch(function(error){console.log(error);});
 
 
-                }
-            }
+                // }
+            // }
         })
         .catch(function(error){console.log(error);});
 
