@@ -53,9 +53,10 @@ app.get('/', async (req, res) => {
             titles: title,
             format: "json"
         };
+        console.log(params2)
 
         url2 = source_url + "?origin=*";
-        Object.keys(params).forEach(function(key){url2 += "&" + key + "=" + params2[key];});
+        Object.keys(params2).forEach(function(key){url2 += "&" + key + "=" + params2[key];});
 
         await fetch(url2)
         .then(function(response){return response.json();})
