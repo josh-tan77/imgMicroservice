@@ -20,7 +20,8 @@ app.get('/:keyword', async (req, res) => {
         action: "query",
         prop: "pageimages", 
         titles: keyword,
-        format: "json"
+        format: "json",
+        pithumbsize: 500;
     };
     
     url = source_url + "?origin=*";
