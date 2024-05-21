@@ -9,7 +9,9 @@ if (port == null || port == "") {
 
 
 // get request to index page
-app.get('/', async (req, res) => {
+app.get('/:keyword', async (req, res) => {
+
+    var keyword = req.params.keyword;
 
     var source_url = "https://en.wikipedia.org/w/api.php"; 
     var titles = [];
@@ -18,7 +20,7 @@ app.get('/', async (req, res) => {
     var params = {
         action: "query",
         prop: "images", 
-        titles: "Golden State Warriors",
+        titles: keyword,
         format: "json",
         imlimit: 500
     };
