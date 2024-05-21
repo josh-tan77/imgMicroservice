@@ -3,12 +3,27 @@ This Microservice uses HTTP to receive a title of a Wikipedia article and return
 
 Article Titles must be entered exactly (e.g. 'Golden State Warriors" and not "warriors")
 
-Examples implementation below is in Node.js/Expresss.
+Example implementation below is in Node.js/Expresss.
 
-## Sender Setup
-### Testing header 3 style
+## Setup
+1. Install axios dependency:
+   ```
+   npm install axios
+   ```
+2. In app.js of main app, write:
+   ```
+   const axios = require('axios');
+   ```
+3. In HTML file of any page that will call this microservice, write:
+   ```
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   ```
 
 
-## Receiver Setup
+## Example Request
+
+
+
+## Example Response
 
 
