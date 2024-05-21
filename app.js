@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
+var cors = require('cors');
 app.use(express.json());
+app.use(cors());
 
 let port = process.env.PORT;
 if (port == null || port == "") {
