@@ -46,12 +46,12 @@ app.get('/', async (req, res) => {
 
     console.log(titles)
 
-    for (var title in titles) {
-        console.log(title);
+    for (let i = 0; i < titles.length; i++) {
+        console.log(titles[i]);
         var params2 = {
             action: "query",
             prop: "imageinfo", 
-            titles: title,
+            titles: titles[i],
             format: "json"
         };
         console.log(params2)
