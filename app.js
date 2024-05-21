@@ -35,6 +35,7 @@ app.get('/:keyword', async (req, res) => {
         .then(function(response){return response.json();})
         .then(function(response) {
             var pages = response.query.pages;
+            console.log(pages);
             
             for (var page in pages) {
                 for (var img of pages[page].images) {
