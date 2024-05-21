@@ -11,12 +11,10 @@ if (port == null || port == "") {
 // get request to index page
 app.get('/:keyword', async (req, res) => {
 
-    console.log(req.params);
     var keyword = req.params.keyword;
 
     var source_url = "https://en.wikipedia.org/w/api.php"; 
-    var titles = [];
-    var data = {};
+    var main_url;
 
     var params = {
         action: "query",
@@ -29,7 +27,7 @@ app.get('/:keyword', async (req, res) => {
     url = source_url + "?origin=*";
     Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
 
-    // First, get a list of all iamge titles on the page
+    // Query the main image using pageimages extension
     
     await fetch(url)
         .then(function(response){return response.json();})
@@ -38,47 +36,12 @@ app.get('/:keyword', async (req, res) => {
             console.log(pages);
             
             for (var page in pages) {
-                console.log("test")
-                console.log(pages[page].thumbnail.source);
-                for (var img of pages[page].images) {
-                    console.log(img.title);
-                    var title = img.title;
-                    titles.push(title);
-
-                }
+                main_url = pages[page].thumbnail.source
             }
         })
         .catch(function(error){console.log(error);});
-    console.log(titles);
 
-    // Then, get the url for each image by title
-    for (let i = 0; i < titles.length; i++) {
-        console.log(titles[i]);
-        var params2 = {
-            action: "query",
-            prop: "imageinfo", 
-            titles: titles[i],
-            format: "json",
-            iiprop: "url"
-        };
-
-
-        url2 = source_url + "?origin=*";
-        Object.keys(params2).forEach(function(key){url2 += "&" + key + "=" + params2[key];});
-
-        await fetch(url2)
-        .then(function(response){return response.json();})
-        .then(function(response) {
-            var pages = response.query.pages;
-            for (var p in pages) {
-                data[titles[i]] = pages[p].imageinfo[0].url;
-            }
-        })
-        .catch(function(error){console.log(error);});
-    }
-
-    console.log(data);
-    res.send(JSON.stringify(data));
+    res.send(main_url);
 })
 
 /*
