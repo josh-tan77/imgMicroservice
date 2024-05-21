@@ -20,7 +20,7 @@ app.get('/:keyword', async (req, res) => {
 
     var params = {
         action: "query",
-        prop: "images", 
+        prop: "pageimages", 
         titles: keyword,
         format: "json",
         imlimit: 500
