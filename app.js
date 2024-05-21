@@ -17,7 +17,7 @@ app.get('/', async (req, res) => {
     var source_url = "https://en.wikipedia.org/w/api.php"; 
     var images;
     var title;
-    var titles;
+    var titles = [];
 
     var params = {
         action: "query",
