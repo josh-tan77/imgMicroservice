@@ -15,8 +15,8 @@ app.get('/', async (req, res) => {
 // then use image info to get url
 
     var source_url = "https://en.wikipedia.org/w/api.php"; 
-    var title;
     var titles = [];
+    var data = {};
 
     var params = {
         action: "query",
@@ -67,6 +67,7 @@ app.get('/', async (req, res) => {
             console.log(pages)
             for (var p in pages) {
                 console.log(pages[p].title + " url is: " + pages[p].imageinfo[0].url);
+                data[titles[i]] = pages[p].imageinfo[0].url;
             }
         })
         .catch(function(error){console.log(error);});
@@ -76,7 +77,7 @@ app.get('/', async (req, res) => {
 
 
 
-
+    console.log(data);
     res.send("Hello")
 })
 
