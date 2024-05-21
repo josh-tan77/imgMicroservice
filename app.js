@@ -17,6 +17,7 @@ app.get('/', async (req, res) => {
     var source_url = "https://en.wikipedia.org/w/api.php"; 
     var images;
     var title;
+    var titles;
 
     var params = {
         action: "query",
@@ -39,13 +40,14 @@ app.get('/', async (req, res) => {
                 for (var img of pages[page].images) {
                     console.log(img.title);
                     var title = img.title;
+                    titles.push(title);
 
                 }
             }
         })
         .catch(function(error){console.log(error);});
 
-    // console.log(title)
+    console.log(titles)
     res.send("Hello")
 })
 
