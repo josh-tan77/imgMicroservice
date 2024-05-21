@@ -18,7 +18,7 @@ app.get('/', async (req, res) => {
     var params = {
         action: "query",
         prop: "images", 
-        titles: "Albert Einstein",
+        titles: "Golden State Warriors",
         format: "json",
         imlimit: 500
     };
