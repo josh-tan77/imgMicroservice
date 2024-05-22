@@ -31,9 +31,11 @@ app.get('/:keyword', async (req, res) => {
         pithumbsize: 250,
         pilicense: "any"
     };
+    console.log(params);
     
     url = source_url + "?origin=*";
     Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
+    console.log(url);
 
     // Query the main image using pageimages extension
     
