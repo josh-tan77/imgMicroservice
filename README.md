@@ -75,3 +75,5 @@ https://upload.wikimedia.org/wikipedia/en/thumb/0/01/Golden_State_Warriors_logo.
 ```
 
 ## UML Sequence Diagram
+![image](https://github.com/josh-tan77/imgMicroservice/assets/149540190/f2f70867-85b2-4faa-867e-502328a8bb1d)
+
