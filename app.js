@@ -49,7 +49,7 @@ app.get('/:keyword', async (req, res) => {
         })
         .catch(function(error){console.log(error);});
 
-    res.send(main_url)
+    res.send(main_url);
 })
 
 /*
