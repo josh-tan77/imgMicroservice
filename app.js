@@ -43,7 +43,7 @@ app.get('/:keyword', async (req, res) => {
         .then(function(response){return response.json();})
         .then(function(response) {
             var pages = response.query.pages;
-            console.log(pages);
+            // console.log(pages);
             
             for (var page in pages) {
                 main_url = pages[page].thumbnail.source;
