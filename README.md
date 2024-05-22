@@ -37,37 +37,26 @@ https://img-microservice-a1ed942a20eb.herokuapp.com/Golden_State_Warriors
 Example Call Below Querying "Golden State Warriors"
 
 ```
-   // Initialize Search Parameters
-    var params = {
-        action: "query",
-        prop: "pageimages", 
-        titles: keyword,
-        format: "json",
-        pithumbsize: 250,
-        pilicense: "any"
-    };
+async function fetchData() {
+    try {
+        title = "Golden State Warriors";
+        title = title.split(' ').join('_');
+        url = 'https://img-microservice-a1ed942a20eb.herokuapp.com/';
+        url = url + title;
 
-    var main_url;
-    var source_url = "https://en.wikipedia.org/w/api.php";
-    url = source_url + "?origin=*";
-    Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
+        const response = await axios.get(url);
+        return response.data;
 
-    // Query the main image using MediaWikiAPI and pageimages extension
-    
-    await fetch(url)
-        .then(function(response){return response.json();})
-        .then(function(response) {
-            var pages = response.query.pages;
-            console.log(pages);
-            
-            for (var page in pages) {
-                main_url = pages[page].thumbnail.source;
-            }
-        })
-        .catch(function(error){console.log(error);});
+    } catch (error) {
+        console.error('Error fetching data from microservice:', error);
+    }
+}
 
-    res.send(main_url);
-})
+async function showImageURL() {
+    const data = await fetchData();
+    console.log(data);
+    alert("Primary Image for Wikipedia Article on " + title + " : " + data);
+}
 
 ```
 
@@ -81,6 +70,7 @@ For example, the request containing the term "Golden State Warriors" will return
 Example Response from Query to "Golden State Warriors"
 
 ```
+https://upload.wikimedia.org/wikipedia/en/thumb/0/01/Golden_State_Warriors_logo.svg/250px-Golden_State_Warriors_logo.svg.png
 
 ```
 
